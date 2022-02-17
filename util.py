@@ -7,5 +7,9 @@ def parse_sts(data_file):
     """
     texts = []
     labels = []
-
+    with open(data_file, 'r') as file:
+        for line in file:
+            fields = line.strip().split("\t")
+            texts.append((fields[5].lower(), fields[6].lower()))
+            labels.append(float(fields[4]))
     return texts, labels

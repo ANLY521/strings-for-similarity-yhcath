@@ -10,6 +10,16 @@ Data is from the [STS benchmark](http://ixa2.si.ehu.es/stswiki/index.php/STSbenc
 **TODO:**
 Describe each metric in ~ 1 sentence
 
+NIST (nltk.translate.nist_score): Compute precision for n-grams of size 1 to 4 while giving more weight to correct, rarer n-grams 
+
+BLEU (nltk.translate.bleu_score): Compute precision for n-grams of size 1 to 4 and giving equal weights to each one
+
+WER (https://martin-thoma.com/word-error-rate-calculation/) : Compute the minimum number of editing steps to transform tokens from a string to match another string
+
+LCS (difflib.SequenceMatcher): Find the longest string that is a substring of two or more strings
+
+Edit Dist (nltk.edit_distance): Compute the minimum number of editing steps to transform characters of a string to match another string
+
 **TODO:** Fill in the correlations. Expected output for DEV is provided; it is ok if your actual result
 varies slightly due to preprocessing/system difference, but the difference should be quite small.
 
@@ -17,14 +27,20 @@ varies slightly due to preprocessing/system difference, but the difference shoul
 
 Metric | Train | Dev | Test 
 ------ | ----- | --- | ----
-NIST | (fill me) | 0.593 | (fill me)
-BLEU | (fill me) | 0.433 | (fill me)
-WER | (fill me) | -0.452| (fill me)
-LCS | (fill me) | 0.468| (fill me)
-Edit Dist | (fill me) | -0.175| (fill me)
+NIST | 0.496 | 0.593 | 0.475
+BLEU | 0.371 | 0.433 | 0.353
+WER | -0.353 | -0.452| -0.358
+LCS | 0.362 | 0.468| 0.347
+Edit Dist | 0.033 | -0.175| -0.039
 
 **TODO:**
 Show usage of the homework script with command line flags (see example under lab, week 1).
+
+python sts_pearson.py  --sts_data "stsbenchmark/sts-train.csv"
+
+python sts_pearson.py  --sts_data "stsbenchmark/sts-dev.csv"
+
+python sts_pearson.py  --sts_data "stsbenchmark/sts-test.csv"
 
 
 ## lab, week 1: sts_nist.py

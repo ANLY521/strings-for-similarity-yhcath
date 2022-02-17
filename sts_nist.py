@@ -11,9 +11,16 @@ def symmetrical_nist(text_pair):
     :param text_pair: iterable to two strings to compare
     :return: a float
     """
-    nist_1 = 0.0
-    nist_2 = 0.0
+    text_a, text_b = text_pair
+    try:
+        nist_1 = sentence_nist([word_tokenize(text_a.lower())], word_tokenize(text_b.lower()))
+    except ZeroDivisionError:
+        nist_1 = 0.0
 
+    try:
+        nist_2 = sentence_nist([word_tokenize(text_b.lower())], word_tokenize(text_a.lower()))
+    except ZeroDivisionError:
+        nist_2 = 0.0
     return nist_1 + nist_2
 
 def main(sts_data):
@@ -53,7 +60,12 @@ def main(sts_data):
     assert nist_ab == nist_ba, f"Symmetrical NIST is not symmetrical! Got {nist_ab} and {nist_ba}"
 
     # TODO 3: find and print the sentences from the sample with the highest and lowest scores
-
+    #lowest:
+    index_min = np.argmin(scores)
+    print(f"Lowest score: {texts[index_min]}")
+    #highest
+    index_max = np.argmax(scores)
+    print(f"Highest score: {texts[index_max]}")
 
 
 if __name__ == "__main__":
